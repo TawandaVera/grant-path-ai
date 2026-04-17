@@ -9,6 +9,7 @@ from api.middleware.error_handler import register_exception_handlers
 from api.routes.health import router as health_router
 from api.routes.grants import router as grants_router
 from api.routes.applications import router as applications_router
+from api.routes.ai import router as ai_router
 
 
 @asynccontextmanager
@@ -33,10 +34,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 app.add_middleware(RateLimitMiddleware)
 register_exception_handlers(app)
 
 app.include_router(health_router)
 app.include_router(grants_router)
 app.include_router(applications_router)
+app.include_router(ai_router)
